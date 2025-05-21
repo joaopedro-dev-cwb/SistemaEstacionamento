@@ -10,7 +10,7 @@ public class Ticket {
     private LocalDateTime dataHoraSaida;
     private double valor;
 
-    Ticket(int id, Veiculo veiculo, Vaga vaga, LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaida, double valor) {
+    public Ticket(int id, Veiculo veiculo, Vaga vaga, LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaida, double valor) {
         this.id = id;
         this.veiculo = veiculo;
         this.vaga = vaga;
