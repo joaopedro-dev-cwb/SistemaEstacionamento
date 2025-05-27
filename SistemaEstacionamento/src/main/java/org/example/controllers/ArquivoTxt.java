@@ -25,7 +25,7 @@ public class ArquivoTxt {
             String linha;
             while((linha = leitor.readLine()) != null){
                 String[] campos = linha.split(",");
-                lista.add(Veiculo.criarAluno(campos[0]), Float.parseFloat(campos[1])));
+                lista.add(Veiculo.criarVeiculo(campos[0]), Float.parseFloat(campos[1])));
             }
         }
 
