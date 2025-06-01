@@ -20,6 +20,7 @@ public class EstacionamentoController {
 
         if (vaga != null) {
             vaga.alterarDisponibilidade(false);
+            carro.setIdVaga(vaga.getNumero());
             return "Carro alocado com sucesso!";
         } else {
             throw new Exception("Sem vagas disponiveis");

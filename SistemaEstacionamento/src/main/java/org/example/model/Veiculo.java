@@ -10,11 +10,13 @@ public abstract class Veiculo {
     private String modelo;
     private String cor;
     private LocalDateTime dataHoraEntrada;
+    int idVaga;
 
     public Veiculo(String placa, String modelo, String cor) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
+        this.idVaga = 0;
     }
 
     public void registrarEntrada() {
@@ -59,6 +61,14 @@ public abstract class Veiculo {
 
     public void setDataHoraEntrada(LocalDateTime dataHoraEntrada) {
         this.dataHoraEntrada = dataHoraEntrada;
+    }
+
+    public int getIdVaga() {
+        return idVaga;
+    }
+
+    public void setIdVaga(int idVaga) {
+        this.idVaga = idVaga;
     }
 
     @Override

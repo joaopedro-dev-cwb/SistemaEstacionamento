@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import org.example.controllers.TicketController;
 import org.example.controllers.VagaController;
+import org.example.controllers.VeiculoController;
 import org.example.model.Ticket;
 import org.example.model.Vaga;
 import org.example.model.Veiculo;
@@ -57,27 +58,19 @@ public class TicketView {
     private void gerarTicket() {
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine();
-        Veiculo veiculo = ticketController.getTickets().stream()
-                .map(Ticket::getVeiculo)
-                .filter(v -> v.getPlaca().equalsIgnoreCase(placa))
-                .findFirst()
-                .orElse(null);
+        Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
         if (veiculo == null) {
             System.out.println("Veículo não encontrado.");
             return;
         }
-        System.out.print("ID da vaga: ");
-        int idVaga = scanner.nextInt();
-        scanner.nextLine();
+        int idVaga = veiculo.getIdVaga();
+        System.out.print("ID da vaga: " + idVaga);
         Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
         if (vaga == null) {
             System.out.println("Vaga não encontrada.");
             return;
         }
-        System.out.print("Valor: ");
-        double valor = scanner.nextDouble();
-        scanner.nextLine();
-        Ticket ticket = ticketController.gerarTicket(veiculo, vaga, valor);
+        Ticket ticket = ticketController.gerarTicket(veiculo, vaga, veiculo.getValorPorHoras());
         System.out.println("Ticket gerado: " + ticket);
     }
 
