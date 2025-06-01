@@ -23,13 +23,43 @@ public class PagamentoController {
             Pagamento pagamento = PagamentoFactory.criarPagamento(id, ticket, valor, formaDePagamento);
             pagamentos.add(pagamento);
             if(pagamento != null){
-
+                return "pagamento criado com sucesso!";
             }
-            return "pagamento criado com sucesso!";
+            return "pagamento nao criado!";
         } catch (IllegalFormatException e) {
             throw new Exception("Argumentos errados de pagamento" + e.getMessage());
         }
 
     }
 
+    public String editarPagamentoPorID(int id)throws Exception{
+        try {
+            Pagamento pagamento = pagamentos.stream().filter(p -> p.getId() == id).findFirst().get();
+            if (pagamento != null) {
+                return "pagamento editado com sucesso!";
+            }
+            return "pagamento não encontrado";
+        }catch (Exception e){
+            throw new Exception("pagamento não encontrado" + e.getMessage());
+        }
+    }
+
+    public List<String> listarPagamentos()  throws Exception{
+        try{
+            return pagamentos.stream().map(Pagamento::toString).toList();
+        } catch (Exception e) {
+            throw new Exception("Nenhum pagamento encontrado" + e.getMessage());
+        }
+    }
+
+    public String removerPagamentoPorId(int id) throws Exception{
+        try {
+            Pagamento pg = pagamentos.stream().filter(p -> p.getId() == id).findFirst().get();
+            pagamentos.remove(pg);
+            return "pagamento excluido com sucesso!";
+        }
+        catch (Exception e){
+            throw new Exception("Nenhum pagamento encontrado" + e.getMessage());
+        }
+    }
 }

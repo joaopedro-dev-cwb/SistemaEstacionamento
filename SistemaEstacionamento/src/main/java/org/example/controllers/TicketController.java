@@ -33,7 +33,7 @@ public class TicketController {
         return tickets;
     }
 
-        public Ticket getTicketById(int id) {
+    public Ticket getTicketById(int id) {
         for (Ticket ticket : tickets) {
             if (ticket.getId() == id) {
                 return ticket;
