@@ -9,7 +9,7 @@ import org.example.model.Veiculo;
 
 public class VeiculoController {
 
-    List<Veiculo> veiculos;
+    static List<Veiculo> veiculos;
 
     public VeiculoController() {
         veiculos = new ArrayList<>();
@@ -27,7 +27,7 @@ public class VeiculoController {
         return veiculos;
     }
 
-    public Veiculo buscarVeiculoPorPlaca(String placa) {
+    public static Veiculo buscarVeiculoPorPlaca(String placa) {
         for (Veiculo veiculo : veiculos) {
             if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
                 return veiculo;
