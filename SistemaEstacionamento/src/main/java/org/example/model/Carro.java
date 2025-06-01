@@ -7,7 +7,7 @@ public class Carro extends Veiculo {
     private static final double VALOR_HORA = 10.0;
 
     public Carro(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) {
-        super(placa, modelo, cor);
+        super(placa, modelo, cor, dataHoraEntrada);
     }
 
     @Override

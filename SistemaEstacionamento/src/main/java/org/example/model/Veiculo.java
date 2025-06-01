@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Veiculo {
 
@@ -10,11 +11,12 @@ public abstract class Veiculo {
     private LocalDateTime dataHoraEntrada;
     int idVaga;
 
-    public Veiculo(String placa, String modelo, String cor) {
+    public Veiculo(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
         this.idVaga = 0;
+        this.dataHoraEntrada = dataHoraEntrada;
     }
 
     public abstract double getValorPorHoras();
@@ -61,10 +63,12 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String dataHoraFormatada = dataHoraEntrada != null ? dataHoraEntrada.format(formatter) : "";
         return "Veiculo="
                 + "\ncor:'" + cor + '\''
                 + "\nplaca='" + placa + '\''
                 + "\nmodelo='" + modelo + '\''
-                + "\ndataHoraEntrada=" + dataHoraEntrada;
+                + "\ndataHoraEntrada=" + dataHoraFormatada;
     }
 }
