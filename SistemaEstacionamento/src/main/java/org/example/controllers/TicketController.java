@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketController {
+
     private List<Ticket> tickets;
 
     TicketController() {
@@ -18,11 +19,12 @@ public class TicketController {
 
     public List<Ticket> gerarTicket(Veiculo veiculo) {
         int id = 1;
-        if(!tickets.isEmpty()){ id = tickets.getLast().getId() + 1;}
+        if (!tickets.isEmpty()) {
+            id = tickets.getLast().getId() + 1;
+        }
         Vaga vaga = veiculo.;
         LocalDateTime dataHoraEntrada = veiculo.getDataHoraEntrada();
         Ticket ticket = TicketFactory.criarTicket(id, veiculo, vaga, dataHoraEntrada, LocalDateTime.now(), valor);
     }
-
 
 }

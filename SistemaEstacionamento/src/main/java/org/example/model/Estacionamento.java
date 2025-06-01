@@ -1,12 +1,11 @@
 package org.example.model;
 
-import org.example.controllers.VagaController;
-import org.example.factory.VagaFactory;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import org.example.controllers.VagaController;
+
 public class Estacionamento {
+
     private String nome;
     private int numeroDeVagas;
     private List<Vaga> vagas;
@@ -69,11 +68,11 @@ public class Estacionamento {
 
     @Override
     public String toString() {
-        return "\nEstacionamento=" +
-                "\nemail:" + email +
-                "\nnome:'" + nome +
-                "\nnumeroDeVagas:" + numeroDeVagas +
-                "\nendereco:" + endereco +
-                "\ntelefone:" + telefone;
+        return "\nEstacionamento="
+                + "\nemail:" + email
+                + "\nnome:'" + nome
+                + "\nnumeroDeVagas:" + numeroDeVagas
+                + "\nendereco:" + endereco
+                + "\ntelefone:" + telefone;
     }
 }

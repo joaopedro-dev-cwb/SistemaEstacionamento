@@ -3,6 +3,7 @@ package org.example.model;
 import java.time.LocalDateTime;
 
 public abstract class Veiculo {
+
     private String placa;
     private String modelo;
     private String cor;
@@ -14,6 +15,8 @@ public abstract class Veiculo {
         this.cor = cor;
         this.dataHoraEntrada = dataHoraEntrada;
     }
+
+    public abstract double getValorPorHoras();
 
     public String getPlaca() {
         return placa;
@@ -49,11 +52,10 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
-        return "Veiculo=" +
-                "\ncor:'" + cor + '\'' +
-                "\nplaca='" + placa + '\'' +
-                "\nmodelo='" + modelo + '\'' +
-                "\ndataHoraEntrada=" + dataHoraEntrada +
-                "\ndataHoraSaida=" + dataHoraSaida;
+        return "Veiculo="
+                + "\ncor:'" + cor + '\''
+                + "\nplaca='" + placa + '\''
+                + "\nmodelo='" + modelo + '\''
+                + "\ndataHoraEntrada=" + dataHoraEntrada;
     }
 }
