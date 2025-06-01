@@ -65,7 +65,10 @@ public class TicketView {
         }
         int idVaga = veiculo.getIdVaga();
         System.out.print("ID da vaga: " + idVaga);
-        Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
+        Vaga vaga = ticketController.getTickets()
+                .stream().map(Ticket::getVaga)
+                .filter(v -> v.getNumero() == idVaga)
+                .findFirst().orElse(null);
         if (vaga == null) {
             System.out.println("Vaga não encontrada.");
             return;
@@ -120,7 +123,10 @@ public class TicketView {
         System.out.print("ID da vaga: ");
         int idVaga = scanner.nextInt();
         scanner.nextLine();
-        Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
+        Vaga vaga = ticketController.getTickets()
+                .stream().map(Ticket::getVaga)
+                .filter(v -> v.getNumero() == idVaga)
+                .findFirst().orElse(null);
         if (vaga == null) {
             System.out.println("Vaga não encontrada.");
             return;
