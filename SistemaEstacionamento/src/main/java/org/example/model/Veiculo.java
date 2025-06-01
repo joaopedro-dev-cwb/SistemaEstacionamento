@@ -69,6 +69,6 @@ public abstract class Veiculo {
                 + "\ncor:'" + cor + '\''
                 + "\nplaca='" + placa + '\''
                 + "\nmodelo='" + modelo + '\''
-                + "\ndataHoraEntrada=" + dataHoraFormatada;
+                + ", Data e Hora de Entrada = " + dataHoraFormatada;
     }
 }

@@ -17,11 +17,13 @@ public class Moto extends Veiculo {
 
     @Override
     public String toString() {
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String dataHoraFormatada = getDataHoraEntrada() != null ? getDataHoraEntrada().format(formatter) : "";
         return "Moto{"
                 + "placa='" + getPlaca() + '\''
                 + ", modelo='" + getModelo() + '\''
                 + ", cor='" + getCor() + '\''
-                + ", dataHoraEntrada=" + getDataHoraEntrada()
+                + ", Data e Hora de Entrada = " + dataHoraFormatada
                 + '}';
     }
 }
