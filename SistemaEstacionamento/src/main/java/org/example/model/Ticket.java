@@ -3,6 +3,7 @@ package org.example.model;
 import java.time.LocalDateTime;
 
 public class Ticket {
+
     private int id;
     private Veiculo veiculo;
     private Vaga vaga;
@@ -69,12 +70,16 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "\nTicket=" +
-                "\ndataHoraEntrada:" + dataHoraEntrada +
-                "\nid:" + id +
-                "\nveiculo:" + veiculo +
-                "\nvaga:" + vaga +
-                "\ndataHoraSaida:" + dataHoraSaida +
-                "\nvalor:" + valor;
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String entradaFormatada = dataHoraEntrada != null ? dataHoraEntrada.format(formatter) : "";
+        String saidaFormatada = dataHoraSaida != null ? dataHoraSaida.format(formatter) : "";
+
+        return "\nTicket="
+                + "\ndataHoraEntrada:" + entradaFormatada
+                + "\nid:" + id
+                + "\nveiculo:" + veiculo
+                + "\nvaga:" + vaga
+                + "\ndataHoraSaida:" + saidaFormatada
+                + "\nvalor:" + valor;
     }
 }

@@ -2,7 +2,6 @@ package org.example.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public abstract class Veiculo {
 
@@ -12,21 +11,12 @@ public abstract class Veiculo {
     private LocalDateTime dataHoraEntrada;
     int idVaga;
 
-    public Veiculo(String placa, String modelo, String cor) {
+    public Veiculo(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
         this.idVaga = 0;
-    }
-
-    public void registrarEntrada() {
-        this.dataHoraEntrada = LocalDateTime.now();
-    }
-
-    //no main lançar essa exeção
-    public void registrarEntrada(String dataHoraTexto) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        this.dataHoraEntrada = LocalDateTime.parse(dataHoraTexto, formatter);
+        this.dataHoraEntrada = dataHoraEntrada;
     }
 
     public abstract double getValorPorHoras();
@@ -73,10 +63,12 @@ public abstract class Veiculo {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String dataHoraFormatada = dataHoraEntrada != null ? dataHoraEntrada.format(formatter) : "";
         return "Veiculo="
                 + "\ncor:'" + cor + '\''
                 + "\nplaca='" + placa + '\''
                 + "\nmodelo='" + modelo + '\''
-                + "\ndataHoraEntrada=" + dataHoraEntrada;
+                + ", Data e Hora de Entrada = " + dataHoraFormatada;
     }
 }
