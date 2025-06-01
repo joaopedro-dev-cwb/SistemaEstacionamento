@@ -13,13 +13,13 @@ public class Estacionamento {
     private String telefone;
     private String email;
 
-    public Estacionamento(String nome, String endereco, int numeroDeVagas, String telefone, String email) {
+    public Estacionamento(String nome, String endereco, int numeroDeVagas, String telefone, String email, List<Vaga> vagas) {
         this.nome = nome;
         this.numeroDeVagas = numeroDeVagas;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-        this.vagas = VagaController.criarVagas(numeroDeVagas);
+        this.vagas = vagas;
     }
 
     public String getNome() {
