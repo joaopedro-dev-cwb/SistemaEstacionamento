@@ -26,11 +26,7 @@ public class PagamentoController {
             pagamentos.add(pagamento);
             if(pagamento != null){
                 if(ticket.getVeiculo().getClass() == Moto.class){
-                    if(ticket.getVaga().estaDisponivelParaMoto()){
-                        ticket.getVaga().alterarDisponibilidade(true);
-                    }else{
-                        ticket.getVaga().alterarDisponibilidadeMoto(true);
-                    }
+                    ticket.getVaga().alterarDisponibilidadeMoto(true);
                 }else{
                     ticket.getVaga().alterarDisponibilidade(true);
                 }
@@ -61,6 +57,10 @@ public class PagamentoController {
         } catch (Exception e) {
             throw new Exception("Nenhum pagamento encontrado" + e.getMessage());
         }
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return pagamentos;
     }
 
     public String removerPagamentoPorId(int id) throws Exception{

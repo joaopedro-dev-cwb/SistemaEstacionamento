@@ -82,13 +82,11 @@ public class VeiculoView {
     }
 
     private void listarVeiculos() {
-        List<Veiculo> veiculos = veiculoController.listarVeiculos();
+        List<String> veiculos = veiculoController.listarVeiculos();
         if (veiculos.isEmpty()) {
             System.out.println("Nenhum veículo cadastrado.");
         } else {
-            for (Veiculo v : veiculos) {
-                System.out.println(v);
-            }
+           veiculos.forEach(System.out::println);
         }
     }
 

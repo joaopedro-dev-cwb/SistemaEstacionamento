@@ -26,10 +26,14 @@ public class TicketController {
         LocalDateTime dataHoraSaida = LocalDateTime.now();
         int horasTotais = dataHoraEntrada.getHour() - dataHoraSaida.getHour();
 
-        Double valorTotal = valor * horasTotais;
+        double valorTotal = valor * horasTotais;
         Ticket ticket = TicketFactory.criarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida, valorTotal);
         tickets.add(ticket);
         return ticket;
+    }
+
+    public List<Ticket> listarTickets(Vaga vaga) {
+        return tickets;
     }
 
     public List<Ticket> getTickets() {

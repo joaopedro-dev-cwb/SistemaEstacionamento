@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.example.Enum.StatusVaga;
 import org.example.factory.VagaFactory;
@@ -18,8 +19,8 @@ public class VagaController {
         return vagas;
     }
 
-    public static List<Vaga> listarVagas() {
-        return vagas;
+    public static List<String> listarVagas() {
+        return vagas.stream().map(Vaga::toString).toList();
     }
 
     public static Vaga buscarVagaPorNumero(int numeroVaga) {

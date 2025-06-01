@@ -56,13 +56,11 @@ public class VagaView {
     }
 
     private void listarVagas() {
-        List<Vaga> vagas = VagaController.listarVagas();
+        List<String> vagas = VagaController.listarVagas();
         if (vagas.isEmpty()) {
             System.out.println("Nenhuma vaga cadastrada.");
         } else {
-            for (Vaga vaga : vagas) {
-                System.out.println(vaga);
-            }
+            vagas.forEach(System.out::println);
         }
     }
 

@@ -23,7 +23,11 @@ public class VeiculoController {
         veiculos.add(VeiculoFactory.criarMoto(placa, modelo, cor, dataHoraEntrada));
     }
 
-    public List<Veiculo> listarVeiculos() {
+    public List<String> listarVeiculos(){
+        return veiculos.stream().map(Veiculo::toString).toList();
+    }
+
+    public List<Veiculo> getVeiculos() {
         return veiculos;
     }
 
