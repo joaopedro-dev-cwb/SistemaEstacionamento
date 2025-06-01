@@ -29,30 +29,14 @@ public class VagaView {
 
             switch (opcao) {
                 case 1:
-                    criarVagas();
-                    break;
-                case 2:
                     listarVagas();
                     break;
-                case 3:
+                case 2:
                     buscarVagaPorNumero();
                     break;
-                case 4:
-                    removerVaga();
-                    break;
+
             }
         } while (opcao != 0);
-    }
-
-    private void criarVagas() {
-        System.out.print("Quantas vagas deseja criar? ");
-        int quantidade = scanner.nextInt();
-        scanner.nextLine();
-        List<Vaga> vagasCriadas = VagaController.criarVagas(quantidade); 
-        System.out.println("Vagas criadas: ");
-        for (Vaga vaga : vagasCriadas) {
-            System.out.println(vaga);
-        }
     }
 
     private void listarVagas() {
@@ -78,11 +62,4 @@ public class VagaView {
         }
     }
 
-    private void removerVaga() {
-        System.out.print("Número da vaga: ");
-        int numero = scanner.nextInt();
-        scanner.nextLine();
-        VagaController.removerVaga(numero);
-        System.out.println("Vaga removida (se existia).");
-    }
 }
