@@ -9,9 +9,11 @@ import org.example.model.Vaga;
 public class VagaView {
 
     private Scanner scanner;
+    private VagaController vagaController;
 
-    public VagaView() {
+    public VagaView(VagaController vagaController){
         this.scanner = new Scanner(System.in);
+        this.vagaController = vagaController;
     }
 
     public void menu() {
@@ -38,7 +40,7 @@ public class VagaView {
     }
 
     private void listarVagas() {
-        List<String> vagas = VagaController.listarVagas();
+        List<String> vagas = vagaController.listarVagas();
         if (vagas.isEmpty()) {
             System.out.println("Nenhuma vaga cadastrada.");
         } else {
@@ -50,7 +52,7 @@ public class VagaView {
         System.out.print("Número da vaga: ");
         int numero = scanner.nextInt();
         scanner.nextLine();
-        Vaga vaga = VagaController.buscarVagaPorNumero(numero);
+        Vaga vaga = vagaController.buscarVagaPorNumero(numero);
         if (vaga != null) {
             System.out.println(vaga);
         } else {

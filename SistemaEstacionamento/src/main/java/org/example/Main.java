@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.example.controllers.EstacionamentoController;
 import org.example.controllers.TicketController;
+import org.example.controllers.VagaController;
 import org.example.controllers.VeiculoController;
 import org.example.util.Log;
 import org.example.view.TicketView;
@@ -21,10 +22,11 @@ public class Main {
             EstacionamentoController estacionamentoController = new EstacionamentoController();
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
+            VagaController vagaController = new VagaController();
 
             // Inicializar views
             VeiculoView veiculoView = new VeiculoView(veiculoController);
-            VagaView vagaView = new VagaView(); // Sem parâmetros
+            VagaView vagaView = new VagaView(vagaController); // Sem parâmetros
             TicketView ticketView = new TicketView(ticketController);
 
             // Criar estacionamento padrão se não existir
