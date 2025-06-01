@@ -32,4 +32,30 @@ public class TicketController {
     public List<Ticket> getTickets() {
         return tickets;
     }
+
+        public Ticket getTicketById(int id) {
+        for (Ticket ticket : tickets) {
+            if (ticket.getId() == id) {
+                return ticket;
+            }
+        }
+        return null;
+    }
+
+    public boolean atualizarTicket(int id, Veiculo veiculo, Vaga vaga, LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaida, double valor) {
+        Ticket ticket = getTicketById(id);
+        if (ticket != null) {
+            ticket.setVeiculo(veiculo);
+            ticket.setVaga(vaga);
+            ticket.setDataHoraEntrada(dataHoraEntrada);
+            ticket.setDataHoraSaida(dataHoraSaida);
+            ticket.setValor(valor);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerTicket(int id) {
+        return tickets.removeIf(ticket -> ticket.getId() == id);
+    }
 }
