@@ -1,64 +1,130 @@
 package org.example;
 
-import java.time.LocalDateTime;
+import java.util.Scanner;
 
 import org.example.controllers.EstacionamentoController;
-import org.example.model.Carro;
-import org.example.model.Moto;
-import org.example.model.Vaga;
+import org.example.controllers.TicketController;
+import org.example.controllers.VeiculoController;
+import org.example.view.TicketView;
+import org.example.view.VagaView;
+import org.example.view.VeiculoView;
 
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            // Inicializar estacionamento
-            EstacionamentoController controller = new EstacionamentoController();
-            controller.cadastrarEstacionamento("Estacionamento Central", 10,
-                    "Rua A, 123", "1234-5678", "contato@estacionamento.com");
+        // Inicializar controllers
+        EstacionamentoController estacionamentoController = new EstacionamentoController();
+        VeiculoController veiculoController = new VeiculoController();
+        TicketController ticketController = new TicketController();
 
-            // Verificar vagas disponíveis inicialmente
-            System.out.println("Vagas disponíveis inicialmente: "
-                    + controller.estacionamento.getVagas().stream()
-                            .filter(Vaga::estaDisponivel)
-                            .count());
+        // Inicializar views
+        VeiculoView veiculoView = new VeiculoView(veiculoController);
+        VagaView vagaView = new VagaView(); // Sem parâmetros
+        TicketView ticketView = new TicketView(ticketController);
 
-            // Criar veículos
-            Carro carro = new Carro("ABC-1234", "Gol", "Prata", LocalDateTime.now());
-            Moto moto1 = new Moto("XYZ-9876", "Honda", "Vermelha", LocalDateTime.now());
-            Moto moto2 = new Moto("DEF-5678", "Yamaha", "Preta", LocalDateTime.now());
-
-            // Alocar veículos
-            System.out.println(controller.alocarCarro(carro));
-            System.out.println(controller.alocarMoto(moto1));
-
-            // Verificar vagas disponíveis para carros após alocação
-            System.out.println("Vagas disponíveis para carros após alocação: "
-                    + controller.estacionamento.getVagas().stream()
-                            .filter(Vaga::estaDisponivel)
-                            .count());
-
-            // Verificar vagas disponíveis para motos após alocação
-            System.out.println("Vagas disponíveis para motos após alocação: "
-                    + controller.estacionamento.getVagas().stream()
-                            .filter(Vaga::estaDisponivelParaMoto)
-                            .count());
-
-            // Tentar alocar mais uma moto
-            System.out.println(controller.alocarMoto(moto2));
-
-            // Liberar uma vaga ocupada
-            Vaga vagaOcupada = controller.estacionamento.getVagas().get(0);
-            vagaOcupada.alterarDisponibilidade(true);
-            System.out.println("Vaga " + vagaOcupada.getNumero() + " liberada para qualquer veículo.");
-
-            // Verificar novamente as vagas disponíveis
-            System.out.println("Vagas disponíveis após liberação: "
-                    + controller.estacionamento.getVagas().stream()
-                            .filter(Vaga::estaDisponivel)
-                            .count());
-
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+        // Criar estacionamento padrão se não existir
+        if (estacionamentoController.estacionamento == null) {
+            estacionamentoController.cadastrarEstacionamento(
+                    "Estacionamento Central",
+                    20,
+                    "Av. Principal, 123",
+                    "(11) 9876-5432",
+                    "contato@estacionamento.com.br"
+            );
+            System.out.println("Estacionamento padrão criado com sucesso!");
         }
+
+        // Inicializar scanner para input do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        // Loop principal do menu
+        int opcao;
+        do {
+            exibirMenuPrincipal();
+            opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir quebra de linha
+
+            switch (opcao) {
+                case 1:
+                    gerenciarEstacionamento(estacionamentoController, scanner);
+                    break;
+                case 2:
+                    veiculoView.menu();
+                    break;
+                case 3:
+                    vagaView.menu();
+                    break;
+                case 4:
+                    ticketView.menu();
+                    break;
+                case 5:
+                    gerenciarPagamentos(scanner);
+                    break;
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 0);
+
+        scanner.close();
+    }
+
+    private static void gerenciarEstacionamento(EstacionamentoController controller, Scanner scanner) {
+        System.out.println("\n--- Gerenciamento de Estacionamento ---");
+        System.out.println("1. Ver informações do estacionamento");
+        System.out.println("2. Atualizar informações do estacionamento");
+        System.out.println("0. Voltar");
+        System.out.print("Escolha uma opção: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcao) {
+            case 1:
+                if (controller.estacionamento != null) {
+                    System.out.println(controller.estacionamento);
+                } else {
+                    System.out.println("Estacionamento não configurado!");
+                }
+                break;
+            case 2:
+                System.out.print("Nome: ");
+                String nome = scanner.nextLine();
+                System.out.print("Número de vagas: ");
+                int vagas = scanner.nextInt();
+                scanner.nextLine();
+                System.out.print("Endereço: ");
+                String endereco = scanner.nextLine();
+                System.out.print("Telefone: ");
+                String telefone = scanner.nextLine();
+                System.out.print("Email: ");
+                String email = scanner.nextLine();
+
+                controller.cadastrarEstacionamento(nome, vagas, endereco, telefone, email);
+                System.out.println("Informações atualizadas com sucesso!");
+                break;
+        }
+    }
+
+    private static void gerenciarPagamentos(Scanner scanner) {
+        System.out.println("\n--- Gerenciamento de Pagamentos ---");
+        System.out.println("Funcionalidade em desenvolvimento...");
+        System.out.println("Pressione ENTER para continuar");
+        scanner.nextLine();
+    }
+
+    private static void exibirMenuPrincipal() {
+        System.out.println("\n=================================");
+        System.out.println("  SISTEMA DE ESTACIONAMENTO");
+        System.out.println("=================================");
+        System.out.println("1. Gerenciar Estacionamento");
+        System.out.println("2. Gerenciar Veículos");
+        System.out.println("3. Gerenciar Vagas");
+        System.out.println("4. Gerenciar Tickets");
+        System.out.println("5. Gerenciar Pagamentos");
+        System.out.println("0. Sair");
+        System.out.println("=================================");
+        System.out.print("Escolha uma opção: ");
     }
 }

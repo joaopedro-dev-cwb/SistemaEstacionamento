@@ -54,32 +54,32 @@ public class TicketView {
         } while (opcao != 0);
     }
 
-private void gerarTicket() {
-    System.out.print("Placa do veículo: ");
-    String placa = scanner.nextLine();
-    Veiculo veiculo = ticketController.getTickets().stream()
-            .map(Ticket::getVeiculo)
-            .filter(v -> v.getPlaca().equalsIgnoreCase(placa))
-            .findFirst()
-            .orElse(null);
-    if (veiculo == null) {
-        System.out.println("Veículo não encontrado.");
-        return;
+    private void gerarTicket() {
+        System.out.print("Placa do veículo: ");
+        String placa = scanner.nextLine();
+        Veiculo veiculo = ticketController.getTickets().stream()
+                .map(Ticket::getVeiculo)
+                .filter(v -> v.getPlaca().equalsIgnoreCase(placa))
+                .findFirst()
+                .orElse(null);
+        if (veiculo == null) {
+            System.out.println("Veículo não encontrado.");
+            return;
+        }
+        System.out.print("ID da vaga: ");
+        int idVaga = scanner.nextInt();
+        scanner.nextLine();
+        Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
+        if (vaga == null) {
+            System.out.println("Vaga não encontrada.");
+            return;
+        }
+        System.out.print("Valor: ");
+        double valor = scanner.nextDouble();
+        scanner.nextLine();
+        Ticket ticket = ticketController.gerarTicket(veiculo, vaga, valor);
+        System.out.println("Ticket gerado: " + ticket);
     }
-    System.out.print("ID da vaga: ");
-    int idVaga = scanner.nextInt();
-    scanner.nextLine();
-    Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
-    if (vaga == null) {
-        System.out.println("Vaga não encontrada.");
-        return;
-    }
-    System.out.print("Valor: ");
-    double valor = scanner.nextDouble();
-    scanner.nextLine();
-    Ticket ticket = ticketController.gerarTicket(veiculo, vaga, valor);
-    System.out.println("Ticket gerado: " + ticket);
-}
 
     private void listarTickets() {
         List<Ticket> tickets = ticketController.getTickets();
@@ -104,48 +104,48 @@ private void gerarTicket() {
         }
     }
 
-private void atualizarTicket() {
-    System.out.print("ID do ticket: ");
-    int id = scanner.nextInt();
-    scanner.nextLine();
-    Ticket ticket = ticketController.getTicketById(id);
-    if (ticket == null) {
-        System.out.println("Ticket não encontrado.");
-        return;
+    private void atualizarTicket() {
+        System.out.print("ID do ticket: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        Ticket ticket = ticketController.getTicketById(id);
+        if (ticket == null) {
+            System.out.println("Ticket não encontrado.");
+            return;
+        }
+        System.out.print("Nova placa do veículo: ");
+        String placa = scanner.nextLine();
+        Veiculo veiculo = ticketController.getTickets().stream()
+                .map(Ticket::getVeiculo)
+                .filter(v -> v.getPlaca().equalsIgnoreCase(placa))
+                .findFirst()
+                .orElse(null);
+        if (veiculo == null) {
+            System.out.println("Veículo não encontrado.");
+            return;
+        }
+        System.out.print("ID da vaga: ");
+        int idVaga = scanner.nextInt();
+        scanner.nextLine();
+        Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
+        if (vaga == null) {
+            System.out.println("Vaga não encontrada.");
+            return;
+        }
+        System.out.print("Nova data/hora de entrada (yyyy-MM-ddTHH:mm): ");
+        LocalDateTime entrada = LocalDateTime.parse(scanner.nextLine());
+        System.out.print("Nova data/hora de saída (yyyy-MM-ddTHH:mm): ");
+        LocalDateTime saida = LocalDateTime.parse(scanner.nextLine());
+        System.out.print("Novo valor: ");
+        double valor = scanner.nextDouble();
+        scanner.nextLine();
+        boolean atualizado = ticketController.atualizarTicket(id, veiculo, vaga, entrada, saida, valor);
+        if (atualizado) {
+            System.out.println("Ticket atualizado!");
+        } else {
+            System.out.println("Erro ao atualizar ticket.");
+        }
     }
-    System.out.print("Nova placa do veículo: ");
-    String placa = scanner.nextLine();
-    Veiculo veiculo = ticketController.getTickets().stream()
-            .map(Ticket::getVeiculo)
-            .filter(v -> v.getPlaca().equalsIgnoreCase(placa))
-            .findFirst()
-            .orElse(null);
-    if (veiculo == null) {
-        System.out.println("Veículo não encontrado.");
-        return;
-    }
-    System.out.print("ID da vaga: ");
-    int idVaga = scanner.nextInt();
-    scanner.nextLine();
-    Vaga vaga = VagaController.buscarVagaPorNumero(idVaga);
-    if (vaga == null) {
-        System.out.println("Vaga não encontrada.");
-        return;
-    }
-    System.out.print("Nova data/hora de entrada (yyyy-MM-ddTHH:mm): ");
-    LocalDateTime entrada = LocalDateTime.parse(scanner.nextLine());
-    System.out.print("Nova data/hora de saída (yyyy-MM-ddTHH:mm): ");
-    LocalDateTime saida = LocalDateTime.parse(scanner.nextLine());
-    System.out.print("Novo valor: ");
-    double valor = scanner.nextDouble();
-    scanner.nextLine();
-    boolean atualizado = ticketController.atualizarTicket(id, veiculo, vaga, entrada, saida, valor);
-    if (atualizado) {
-        System.out.println("Ticket atualizado!");
-    } else {
-        System.out.println("Erro ao atualizar ticket.");
-    }
-}
 
     private void removerTicket() {
         System.out.print("ID do ticket: ");
