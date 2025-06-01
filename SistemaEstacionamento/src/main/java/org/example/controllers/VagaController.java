@@ -44,4 +44,8 @@ public class VagaController {
         }
     }
 
+    public void setVagas(List<Vaga> vagas) {
+        this.vagas = vagas;
+    }
+
 }

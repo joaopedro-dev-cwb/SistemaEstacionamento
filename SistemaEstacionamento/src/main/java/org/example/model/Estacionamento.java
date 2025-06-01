@@ -14,7 +14,7 @@ public class Estacionamento {
     private String email;
     private VagaController vagaController;
 
-    public Estacionamento(String nome, String endereco, int numeroDeVagas, String telefone, String email, List<Vaga> vagas, VagaController vagaController) {
+    public Estacionamento(String nome, String endereco, int numeroDeVagas, String telefone, String email, List<Vaga> vagas) {
         this.nome = nome;
         this.numeroDeVagas = numeroDeVagas;
         this.endereco = endereco;
@@ -70,10 +70,6 @@ public class Estacionamento {
 
     public VagaController getVagaController() {
         return vagaController;
-    }
-
-    public void setVagaController(VagaController vagaController) {
-        this.vagaController = vagaController;
     }
 
     @Override

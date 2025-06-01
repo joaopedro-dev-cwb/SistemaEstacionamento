@@ -12,7 +12,7 @@ public abstract class EstacionamentoFactory {
         VagaController vagaController = new VagaController();
         vagaController.criarVagas(numeroDeVagas);
         List<Vaga> vagas = vagaController.getVagas();
-        Estacionamento estacionamento = new Estacionamento(nome, endereco, numeroDeVagas, telefone, email, vagas, vagaController);
+        Estacionamento estacionamento = new Estacionamento(nome, endereco, numeroDeVagas, telefone, email, vagas);
         return estacionamento;
     }
 

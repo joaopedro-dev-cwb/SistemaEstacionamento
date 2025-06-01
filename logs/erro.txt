@@ -1,1 +1,11 @@
 [2025-06-01 15:29:14] Erro no menu principal: null
+[2025-06-01 16:36:30] Erro crítico na inicialização do sistema: Cannot invoke "org.example.model.Estacionamento.getVagaController()" because "this.estacionamento" is null
+java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.getVagaController()" because "this.estacionamento" is null
+	at org.example.controllers.EstacionamentoController.getControllerVaga(EstacionamentoController.java:52)
+	at org.example.Main.main(Main.java:25)
+[2025-06-01 16:51:42] Erro crítico na inicialização do sistema: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
+java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
+	at org.example.Main.main(Main.java:26)
+[2025-06-01 16:51:59] Erro crítico na inicialização do sistema: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
+java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
+	at org.example.Main.main(Main.java:26)

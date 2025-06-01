@@ -7,12 +7,12 @@ import org.example.model.Carro;
 import org.example.model.Moto;
 
 public class EstacionamentoView {
-    private EstacionamentoController estacionamentoController;
     private Scanner scanner;
+    private EstacionamentoController estacionamentoController;
 
-    public EstacionamentoView(EstacionamentoController estacionamentoController) {
-        this.estacionamentoController = estacionamentoController;
+    public EstacionamentoView() {
         this.scanner = new Scanner(System.in);
+        this.estacionamentoController = new EstacionamentoController();
     }
 
     public void menu() {
