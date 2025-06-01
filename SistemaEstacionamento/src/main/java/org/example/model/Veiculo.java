@@ -1,8 +1,6 @@
 package org.example.model;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public abstract class Veiculo {
 
@@ -17,16 +15,6 @@ public abstract class Veiculo {
         this.modelo = modelo;
         this.cor = cor;
         this.idVaga = 0;
-    }
-
-    public void registrarEntrada() {
-        this.dataHoraEntrada = LocalDateTime.now();
-    }
-
-    //no main lançar essa exeção
-    public void registrarEntrada(String dataHoraTexto) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        this.dataHoraEntrada = LocalDateTime.parse(dataHoraTexto, formatter);
     }
 
     public abstract double getValorPorHoras();
