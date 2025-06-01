@@ -22,7 +22,7 @@ public class Main {
             EstacionamentoController estacionamentoController = new EstacionamentoController();
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
-            VagaController vagaController = new VagaController();
+            VagaController vagaController = estacionamentoController.getControllerVaga();
 
             // Inicializar views
             VeiculoView veiculoView = new VeiculoView(veiculoController);

@@ -12,14 +12,16 @@ public class Estacionamento {
     private String endereco;
     private String telefone;
     private String email;
+    private VagaController vagaController;
 
-    public Estacionamento(String nome, String endereco, int numeroDeVagas, String telefone, String email, List<Vaga> vagas) {
+    public Estacionamento(String nome, String endereco, int numeroDeVagas, String telefone, String email, List<Vaga> vagas, VagaController vagaController) {
         this.nome = nome;
         this.numeroDeVagas = numeroDeVagas;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
         this.vagas = vagas;
+        this.vagaController = vagaController;
     }
 
     public String getNome() {
@@ -64,6 +66,14 @@ public class Estacionamento {
 
     public List<Vaga> getVagas() {
         return vagas;
+    }
+
+    public VagaController getVagaController() {
+        return vagaController;
+    }
+
+    public void setVagaController(VagaController vagaController) {
+        this.vagaController = vagaController;
     }
 
     @Override

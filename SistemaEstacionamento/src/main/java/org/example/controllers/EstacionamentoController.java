@@ -47,4 +47,9 @@ public class EstacionamentoController {
             throw new Exception("Sem vagas disponíveis.");
         }
     }
+
+    public VagaController getControllerVaga(){
+        return estacionamento.getVagaController();
+    }
+
 }
