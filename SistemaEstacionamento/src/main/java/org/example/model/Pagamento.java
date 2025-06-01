@@ -8,7 +8,7 @@ public class Pagamento {
     private double valorPago;
     private String formaDePagamento;
 
-    Pagamento(int id, Ticket ticket, double valorPago, String formaDePagamento) {
+    public Pagamento(int id, Ticket ticket, double valorPago, String formaDePagamento) {
         this.id = id;
         this.ticket = ticket;
         this.valorPago = valorPago;
