@@ -1,17 +1,13 @@
 package org.example.controllers;
 
-import org.example.Enum.StatusVaga;
 import org.example.factory.EstacionamentoFactory;
 import org.example.model.Carro;
 import org.example.model.Estacionamento;
 import org.example.model.Moto;
 import org.example.model.Vaga;
 
-import java.io.IOException;
-import java.util.Optional;
-
-
 public class EstacionamentoController {
+
     public Estacionamento estacionamento;
 
     public void cadastrarEstacionamento(String nome, int numeroDeVagas, String endereco, String telefone, String email) {
@@ -20,10 +16,10 @@ public class EstacionamentoController {
 
     public String alocarCarro(Carro carro) throws Exception {
         Vaga vaga = estacionamento.getVagas().stream()
-                .filter(v -> v.getStatus() == StatusVaga.LIVRE).findFirst().orElse(null);
+                .filter(Vaga::estaDisponivel).findFirst().orElse(null);
 
         if (vaga != null) {
-            vaga.setStatus(StatusVaga.OCUPADA);
+            vaga.alterarDisponibilidade(false);
             return "Carro alocado com sucesso!";
         } else {
             throw new Exception("Sem vagas disponiveis");
@@ -32,20 +28,12 @@ public class EstacionamentoController {
 
     public String alocarMoto(Moto moto) throws Exception {
         Vaga vaga = estacionamento.getVagas().stream()
-                .filter(v -> v.getStatus() == StatusVaga.LIVREMOTO)
+                .filter(Vaga::estaDisponivelParaMoto)
                 .findFirst()
-                .orElseGet(() -> estacionamento.getVagas().stream()
-                        .filter(v -> v.getStatus() == StatusVaga.LIVRE)
-                        .findFirst()
-                        .orElse(null));
+                .orElse(null);
 
         if (vaga != null) {
-            if (vaga.getStatus() == StatusVaga.LIVREMOTO) {
-                vaga.setStatus(StatusVaga.OCUPADA);
-            }
-            if (vaga.getStatus() == StatusVaga.LIVRE) {
-                vaga.setStatus(StatusVaga.LIVREMOTO);
-            }
+            vaga.alterarDisponibilidadeMoto(false);
             return "Moto alocada com sucesso!";
         } else {
             throw new Exception("Sem vagas disponíveis.");
