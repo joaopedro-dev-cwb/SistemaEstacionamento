@@ -10,20 +10,25 @@ import org.example.model.Vaga;
 
 public class VagaController {
 
-    private static List<Vaga> vagas = new ArrayList<>();
+    private  List<Vaga> vagas = new ArrayList<>();
 
-    public static List<Vaga> criarVagas(int numeroDeVagas) {
+    public  List<Vaga> criarVagas(int numeroDeVagas) {
         for (int i = 1; i < numeroDeVagas; i++) {
             vagas.add(VagaFactory.criarVaga(i, StatusVaga.LIVRE));
         }
         return vagas;
     }
 
-    public static List<String> listarVagas() {
+    public List<String> listarVagas() {
         return vagas.stream().map(Vaga::toString).toList();
     }
 
-    public static Vaga buscarVagaPorNumero(int numeroVaga) {
+    public List<Vaga> getVagas(){
+        return vagas;
+    }
+
+
+    public Vaga buscarVagaPorNumero(int numeroVaga) {
         for (Vaga vaga : vagas) {
             if (vaga.getNumero() == numeroVaga) {
                 return vaga;
@@ -32,7 +37,7 @@ public class VagaController {
         return null;
     }
 
-    public static void removerVaga(int numeroVaga) {
+    public void removerVaga(int numeroVaga) {
         Vaga vaga = buscarVagaPorNumero(numeroVaga);
         if (vaga != null) {
             vagas.remove(vaga);
