@@ -18,10 +18,8 @@ public class VagaView {
         int opcao;
         do {
             System.out.println("\n--- Menu Vagas ---");
-            System.out.println("1. Criar Vagas");
-            System.out.println("2. Listar Vagas");
-            System.out.println("3. Buscar Vaga por Número");
-            System.out.println("4. Remover Vaga");
+            System.out.println("1. Listar Vagas");
+            System.out.println("2. Buscar Vaga por Número");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
