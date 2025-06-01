@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ArquivoTxt {
 
-    public static void salvarAlunos(String caminho, List<String> alunos)
+    public static void salvarVeiculo(String caminho, List<String> alunos)
             throws IOException {
 
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(caminho))) {
