@@ -32,9 +32,16 @@ public class EstacionamentoController {
                 .filter(Vaga::estaDisponivelParaMoto)
                 .findFirst()
                 .orElse(null);
-
         if (vaga != null) {
             vaga.alterarDisponibilidadeMoto(false);
+        }
+        if (vaga == null) {
+            vaga = estacionamento.getVagas().stream()
+                    .filter(Vaga::estaDisponivel).findFirst().orElse(null);
+            vaga.alterarDisponibilidadeMoto(true);
+            vaga.alterarDisponibilidade(false);
+        }
+        if (vaga != null) {
             return "Moto alocada com sucesso!";
         } else {
             throw new Exception("Sem vagas disponíveis.");

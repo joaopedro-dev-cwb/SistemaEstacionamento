@@ -1,8 +1,10 @@
 package org.example.controllers;
 
 import org.example.factory.PagamentoFactory;
+import org.example.model.Moto;
 import org.example.model.Pagamento;
 import org.example.model.Ticket;
+import org.example.model.Veiculo;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,6 +25,15 @@ public class PagamentoController {
             Pagamento pagamento = PagamentoFactory.criarPagamento(id, ticket, valor, formaDePagamento);
             pagamentos.add(pagamento);
             if(pagamento != null){
+                if(ticket.getVeiculo().getClass() == Moto.class){
+                    if(ticket.getVaga().estaDisponivelParaMoto()){
+                        ticket.getVaga().alterarDisponibilidade(true);
+                    }else{
+                        ticket.getVaga().alterarDisponibilidadeMoto(true);
+                    }
+                }else{
+                    ticket.getVaga().alterarDisponibilidade(true);
+                }
                 return "pagamento criado com sucesso!";
             }
             return "pagamento nao criado!";
