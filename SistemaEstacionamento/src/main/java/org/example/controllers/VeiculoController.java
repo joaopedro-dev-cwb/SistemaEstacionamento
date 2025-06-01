@@ -23,4 +23,33 @@ public class VeiculoController {
         veiculos.add(VeiculoFactory.criarMoto(placa, modelo, cor, dataHoraEntrada));
     }
 
+    public List<Veiculo> listarVeiculos() {
+        return veiculos;
+    }
+
+    public Veiculo buscarVeiculoPorPlaca(String placa) {
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
+                return veiculo;
+            }
+        }
+        return null;
+    }
+
+    public void removerVeiculo(String placa) {
+        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+        if (veiculo != null) {
+            veiculos.remove(veiculo);
+        }
+    }
+
+    public Veiculo atualizarVeiculo(String placa, String modelo, String cor) {
+        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+        if (veiculo != null) {
+            veiculo.setModelo(modelo);
+            veiculo.setCor(cor);
+        }
+        return veiculo;
+    }
+
 }
