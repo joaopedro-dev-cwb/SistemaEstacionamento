@@ -11,7 +11,7 @@ public class VagaView {
     private Scanner scanner;
     private VagaController vagaController;
 
-    public VagaView(VagaController vagaController){
+    public VagaView(VagaController vagaController) {
         this.scanner = new Scanner(System.in);
         this.vagaController = vagaController;
     }

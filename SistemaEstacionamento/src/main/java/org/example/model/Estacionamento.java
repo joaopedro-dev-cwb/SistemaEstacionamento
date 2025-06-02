@@ -21,7 +21,6 @@ public class Estacionamento {
         this.telefone = telefone;
         this.email = email;
         this.vagas = vagas;
-        this.vagaController = vagaController;
     }
 
     public String getNome() {

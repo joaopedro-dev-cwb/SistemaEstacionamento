@@ -10,9 +10,9 @@ public class EstacionamentoView {
     private Scanner scanner;
     private EstacionamentoController estacionamentoController;
 
-    public EstacionamentoView() {
+    public EstacionamentoView(EstacionamentoController estacionamentoController) {
         this.scanner = new Scanner(System.in);
-        this.estacionamentoController = new EstacionamentoController();
+        this.estacionamentoController = estacionamentoController;
     }
 
     public void menu() {
@@ -37,13 +37,7 @@ public class EstacionamentoView {
                 case 3:
                     alocarMoto();
                     break;
-            }
-        } while (opcao != 0);
-    }
-
-    private void cadastrarEstacionamento() {
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine();
+            }1String nome = scanner.nextLine();
         System.out.print("Número de vagas: ");
         int numeroDeVagas = scanner.nextInt();
         scanner.nextLine();
@@ -79,7 +73,7 @@ public class EstacionamentoView {
             // Supondo que o VeiculoView já coletou os dados e criou o objeto Moto
             System.out.print("Informe a placa da moto já cadastrada: ");
             String placa = scanner.nextLine();
-            Moto moto = buscarMotoPorPlaca(placa); // Método utilitário para buscar a moto já cadastrada
+            Moto moto = estacionamentoController.buscarMotoPorPlaca(placa); // Método utilitário para buscar a moto já cadastrada
             if (moto == null) {
                 System.out.println("Moto não encontrada. Cadastre o veículo primeiro.");
                 return;

@@ -7,6 +7,7 @@ import org.example.controllers.TicketController;
 import org.example.controllers.VagaController;
 import org.example.controllers.VeiculoController;
 import org.example.util.Log;
+import org.example.view.EstacionamentoView;
 import org.example.view.TicketView;
 import org.example.view.VagaView;
 import org.example.view.VeiculoView;
@@ -23,12 +24,6 @@ public class Main {
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
             VagaController vagaController = new VagaController();
-            vagaController.setVagas(estacionamentoController.estacionamento.getVagas());
-
-            // Inicializar views
-            VeiculoView veiculoView = new VeiculoView(veiculoController);
-            VagaView vagaView = new VagaView(vagaController); // Sem parâmetros
-            TicketView ticketView = new TicketView(ticketController);
 
             // Criar estacionamento padrão se não existir
             if (estacionamentoController.estacionamento == null) {
@@ -41,6 +36,13 @@ public class Main {
                 );
                 System.out.println("Estacionamento padrão criado com sucesso!");
             }
+
+
+            vagaController.setVagas(estacionamentoController.estacionamento.getVagas());
+            // Inicializar views
+            VeiculoView veiculoView = new VeiculoView(veiculoController);
+            VagaView vagaView = new VagaView(vagaController); // Sem parâmetros
+            TicketView ticketView = new TicketView(ticketController);
 
             // Inicializar scanner para input do usuário
             Scanner scanner = new Scanner(System.in);

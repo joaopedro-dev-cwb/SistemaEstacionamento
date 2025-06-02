@@ -10,10 +10,12 @@ import org.example.model.Vaga;
 
 public class VagaController {
 
-    private  List<Vaga> vagas = new ArrayList<>();
+    private List<Vaga> vagas = new ArrayList<>();
+
+
 
     public  List<Vaga> criarVagas(int numeroDeVagas) {
-        for (int i = 1; i < numeroDeVagas; i++) {
+        for (int i = 1; i <= numeroDeVagas; i++) {
             vagas.add(VagaFactory.criarVaga(i, StatusVaga.LIVRE));
         }
         return vagas;
@@ -28,7 +30,7 @@ public class VagaController {
     }
 
 
-    public Vaga buscarVagaPorNumero(int numeroVaga) {
+    public  Vaga buscarVagaPorNumero(int numeroVaga) {
         for (Vaga vaga : vagas) {
             if (vaga.getNumero() == numeroVaga) {
                 return vaga;
