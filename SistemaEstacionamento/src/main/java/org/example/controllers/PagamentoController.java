@@ -14,7 +14,7 @@ import java.util.List;
 public class PagamentoController {
     List<Pagamento> pagamentos;
 
-    PagamentoController() {
+    public PagamentoController() {
         pagamentos = new ArrayList<Pagamento>();
     }
 

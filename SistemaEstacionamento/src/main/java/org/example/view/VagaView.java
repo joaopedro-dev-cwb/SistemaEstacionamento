@@ -1,20 +1,16 @@
 package org.example.view;
 
-import org.example.Enum.StatusVaga;
-import org.example.controllers.VagaController;
-import org.example.model.Vaga;
 import java.util.List;
 import java.util.Scanner;
+
+import org.example.controllers.VagaController;
+import org.example.model.Vaga;
 
 public class VagaView {
     private VagaController vagaController;
     private Scanner scanner;
 
     public VagaView(VagaController vagaController) {
-<<<<<<< HEAD
-=======
-        this.scanner = new Scanner(System.in);
->>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
         this.vagaController = vagaController;
         this.scanner = new Scanner(System.in);
     }

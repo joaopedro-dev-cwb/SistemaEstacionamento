@@ -30,3 +30,10 @@ java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.
 java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
 	at org.example.Main.main(Main.java:27)
 >>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
+java.util.NoSuchElementException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:945)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at org.example.view.VagaView.menuVaga(VagaView.java:28)
+	at org.example.Main.main(Main.java:70)
