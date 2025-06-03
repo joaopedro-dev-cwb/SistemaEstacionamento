@@ -9,3 +9,12 @@ java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.
 [2025-06-01 16:51:59] Erro crítico na inicialização do sistema: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
 java.lang.NullPointerException: Cannot invoke "org.example.model.Estacionamento.getVagas()" because "estacionamentoController.estacionamento" is null
 	at org.example.Main.main(Main.java:26)
+Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
+	Local variable placa is required to be final or effectively final based on its usage
+	Local variable placa defined in an enclosing scope must be final or effectively final
+
+	at org.example.controllers.VeiculoController.buscarVeiculoPorPlaca(VeiculoController.java:94)
+	at org.example.view.VeiculoView.cadastrarCarro(VeiculoView.java:85)
+	at org.example.view.VeiculoView.executarOpcao(VeiculoView.java:55)
+	at org.example.view.VeiculoView.menuVeiculo(VeiculoView.java:27)
+	at org.example.Main.main(Main.java:67)
