@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.Enum.StatusVaga;
 import org.example.factory.EstacionamentoFactory;
 import org.example.model.Carro;
 import org.example.model.Estacionamento;

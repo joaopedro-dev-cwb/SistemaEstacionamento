@@ -55,14 +55,14 @@ public class Vaga implements Disponibilidade {
     public void alterarDisponibilidadeMoto(boolean disponivel) {
         if (disponivel) {
             // Se está sendo liberado para moto
-            if (this.status == StatusVaga.OCUPADA) {
+            if (this.status.equals(StatusVaga.OCUPADA)) {
                 this.status = StatusVaga.LIVREMOTO;
             } else {
                 this.status = StatusVaga.LIVRE;
             }
         } else {
             // Se está sendo ocupado por moto
-            if (this.status == StatusVaga.LIVRE) {
+            if (this.status.equals(StatusVaga.LIVRE)) {
                 this.status = StatusVaga.LIVREMOTO;
             } else {
                 this.status = StatusVaga.OCUPADA;

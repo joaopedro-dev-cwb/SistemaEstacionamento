@@ -9,7 +9,10 @@ import org.example.controllers.VagaController;
 import org.example.controllers.VeiculoController;
 import org.example.util.Log;
 import org.example.view.EstacionamentoView;
+<<<<<<< HEAD
 import org.example.view.PagamentoView;
+=======
+>>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
 import org.example.view.TicketView;
 import org.example.view.VagaView;
 import org.example.view.VeiculoView;
@@ -28,6 +31,7 @@ public class Main {
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
             VagaController vagaController = new VagaController();
+<<<<<<< HEAD
             PagamentoController pagamentoController = new PagamentoController();
             
             // Configurar relacionamentos entre controllers
@@ -42,6 +46,32 @@ public class Main {
             PagamentoView pagamentoView = new PagamentoView(pagamentoController, ticketController);
             
             // Menu principal
+=======
+
+            // Criar estacionamento padrão se não existir
+            if (estacionamentoController.estacionamento == null) {
+                estacionamentoController.cadastrarEstacionamento(
+                        "Estacionamento Central",
+                        20,
+                        "Av. Principal, 123",
+                        "(11) 9876-5432",
+                        "contato@estacionamento.com.br"
+                );
+                System.out.println("Estacionamento padrão criado com sucesso!");
+            }
+
+
+            vagaController.setVagas(estacionamentoController.estacionamento.getVagas());
+            // Inicializar views
+            VeiculoView veiculoView = new VeiculoView(veiculoController);
+            VagaView vagaView = new VagaView(vagaController); // Sem parâmetros
+            TicketView ticketView = new TicketView(ticketController);
+
+            // Inicializar scanner para input do usuário
+            Scanner scanner = new Scanner(System.in);
+
+            // Loop principal do menu
+>>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
             int opcao;
             do {
                 System.out.println("\n=== SISTEMA DE ESTACIONAMENTO ===");

@@ -12,10 +12,16 @@ public class EstacionamentoView {
     private VeiculoController veiculoController;
     private Scanner scanner;
 
+<<<<<<< HEAD
     public EstacionamentoView(EstacionamentoController estacionamentoController, VeiculoController veiculoController) {
         this.estacionamentoController = estacionamentoController;
         this.veiculoController = veiculoController;
         this.scanner = new Scanner(System.in);
+=======
+    public EstacionamentoView(EstacionamentoController estacionamentoController) {
+        this.scanner = new Scanner(System.in);
+        this.estacionamentoController = estacionamentoController;
+>>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
     }
 
     public void menuEstacionamento() {
@@ -30,6 +36,7 @@ public class EstacionamentoView {
             opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar buffer
             switch (opcao) {
+<<<<<<< HEAD
                 case 1 -> cadastrarEstacionamento();
                 case 2 -> alocarCarro();
                 case 3 -> alocarMoto();
@@ -42,6 +49,18 @@ public class EstacionamentoView {
     private void cadastrarEstacionamento() {
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
+=======
+                case 1:
+                    cadastrarEstacionamento();
+                    break;
+                case 2:
+                    alocarCarro();
+                    break;
+                case 3:
+                    alocarMoto();
+                    break;
+            }1String nome = scanner.nextLine();
+>>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
         System.out.print("Número de vagas: ");
         int vagas = scanner.nextInt();
         scanner.nextLine(); // Limpar buffer
@@ -90,8 +109,17 @@ public class EstacionamentoView {
     
     private void alocarMoto() {
         try {
+<<<<<<< HEAD
             if (estacionamentoController.estacionamento == null) {
                 System.out.println("Estacionamento não cadastrado! Cadastre um estacionamento primeiro.");
+=======
+            // Supondo que o VeiculoView já coletou os dados e criou o objeto Moto
+            System.out.print("Informe a placa da moto já cadastrada: ");
+            String placa = scanner.nextLine();
+            Moto moto = estacionamentoController.buscarMotoPorPlaca(placa); // Método utilitário para buscar a moto já cadastrada
+            if (moto == null) {
+                System.out.println("Moto não encontrada. Cadastre o veículo primeiro.");
+>>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
                 return;
             }
             

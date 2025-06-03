@@ -11,6 +11,10 @@ public class VagaView {
     private Scanner scanner;
 
     public VagaView(VagaController vagaController) {
+<<<<<<< HEAD
+=======
+        this.scanner = new Scanner(System.in);
+>>>>>>> 5173fd5b32cb29fd236096856a110f35c0e13f23
         this.vagaController = vagaController;
         this.scanner = new Scanner(System.in);
     }
