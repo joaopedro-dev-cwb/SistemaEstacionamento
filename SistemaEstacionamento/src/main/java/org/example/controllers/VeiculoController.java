@@ -25,7 +25,7 @@ public class VeiculoController {
         veiculos.add(VeiculoFactory.criarMoto(placa, modelo, cor, dataHoraEntrada));
     }
 
-    public List<String> listarVeiculos(){
+    public List<String> listarVeiculos() {
         return veiculos.stream().map(Veiculo::toString).toList();
     }
 
@@ -61,5 +61,4 @@ public class VeiculoController {
     public void salvar() throws IOException, ClassNotFoundException {
         VeiculoDAO.salvar(veiculos);
     }
-
 }
