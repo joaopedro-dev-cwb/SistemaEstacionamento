@@ -1,9 +1,11 @@
 package org.example.controllers;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.example.dal.TicketDAO;
 import org.example.factory.TicketFactory;
 import org.example.model.Ticket;
 import org.example.model.Vaga;
@@ -64,5 +66,9 @@ public class TicketController {
 
     public boolean removerTicket(int id) {
         return tickets.removeIf(ticket -> ticket.getId() == id);
+    }
+
+    public void salvar() throws IOException, ClassNotFoundException {
+        TicketDAO.salvar(tickets);
     }
 }
