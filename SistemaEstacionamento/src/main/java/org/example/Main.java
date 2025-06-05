@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.InputMismatchException; // Importar esta classe
 import java.util.Scanner;
 
 import org.example.controllers.EstacionamentoController;
@@ -17,32 +18,27 @@ import org.example.view.VeiculoView;
 public class Main {
 
     public static void main(String[] args) {
-        // Inicializar log de erros
         Log.setError();
-        
+
         Scanner scanner = new Scanner(System.in);
-        
+
         try {
-            // Inicializar controllers
             EstacionamentoController estacionamentoController = new EstacionamentoController();
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
             VagaController vagaController = new VagaController();
             PagamentoController pagamentoController = new PagamentoController();
-            
-            // Configurar relacionamentos entre controllers
-            vagaController.setVagas(estacionamentoController.estacionamento != null ? 
-                                   estacionamentoController.estacionamento.getVagas() : null);
 
-            // Inicializar views
-            VeiculoView veiculoView = new VeiculoView(veiculoController);
+            vagaController.setVagas(estacionamentoController.estacionamento != null ?
+                                    estacionamentoController.estacionamento.getVagas() : null);
+
+                                    VeiculoView veiculoView = new VeiculoView(veiculoController);
             VagaView vagaView = new VagaView(vagaController);
             EstacionamentoView estacionamentoView = new EstacionamentoView(estacionamentoController, veiculoController);
             TicketView ticketView = new TicketView(ticketController, veiculoController, vagaController);
             PagamentoView pagamentoView = new PagamentoView(pagamentoController, ticketController);
-            
-            // Menu principal
-            int opcao;
+
+            int opcao = -1;
             do {
                 System.out.println("\n=== SISTEMA DE ESTACIONAMENTO ===");
                 System.out.println("1. Gerenciar Estacionamento");
@@ -52,13 +48,24 @@ public class Main {
                 System.out.println("5. Gerenciar Pagamentos");
                 System.out.println("0. Sair");
                 System.out.print("Escolha uma opção: ");
-                opcao = scanner.nextInt();
-                scanner.nextLine(); // Limpar buffer
-                
+
+                try {
+                    opcao = scanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada inválida! Por favor, digite um número.");
+                    System.err.println("Erro de entrada de usuário: " + e.getMessage()); // Loga a mensagem específica para o usuário
+                    e.printStackTrace(); // Garante que o stack trace vá para o log
+                    scanner.nextLine(); // CONSUMIR A ENTRADA INVÁLIDA para evitar loop infinito
+                    opcao = -1; // Define a opção como inválida para continuar o loop
+                    continue; // Pula para a próxima iteração do loop do-while
+                } finally {
+                    scanner.nextLine();
+                }
+
+
                 switch (opcao) {
                     case 1:
                         estacionamentoView.menuEstacionamento();
-                        // Atualizar as vagas no controller após possíveis mudanças
                         if (estacionamentoController.estacionamento != null) {
                             vagaController.setVagas(estacionamentoController.estacionamento.getVagas());
                         }
@@ -79,15 +86,18 @@ public class Main {
                         System.out.println("Saindo do sistema...");
                         break;
                     default:
-                        System.out.println("Opção inválida!");
+                        System.out.println("Opção inválida! Escolha um número entre 0 e 5.");
                 }
             } while (opcao != 0);
-            
-        } catch (Exception e) {
-            System.out.println("Erro no sistema: " + e.getMessage());
-            e.printStackTrace();
+
+        } catch (Exception e) { // Este catch pega qualquer outra exceção não tratada especificamente acima
+            System.err.println("Um erro inesperado ocorreu no sistema principal: " + e.getMessage());
+            System.err.println("Por favor, verifique o log de erros para mais detalhes.");
+            e.printStackTrace(); // O stack trace completo irá para logs/erro.txt
         } finally {
-            scanner.close();
+            if (scanner != null) {
+                scanner.close();
+            }
         }
     }
 }
