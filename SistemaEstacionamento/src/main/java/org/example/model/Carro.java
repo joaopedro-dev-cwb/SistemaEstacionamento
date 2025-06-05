@@ -1,9 +1,8 @@
 package org.example.model;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Carro extends Veiculo implements Serializable {
+public class Carro extends Veiculo {
 
     private static final double VALOR_HORA = 10.0;
 

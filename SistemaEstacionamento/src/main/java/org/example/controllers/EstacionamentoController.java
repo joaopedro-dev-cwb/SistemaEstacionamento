@@ -6,7 +6,6 @@ import org.example.model.Carro;
 import org.example.model.Estacionamento;
 import org.example.model.Moto;
 import org.example.model.Vaga;
-import org.example.util.EstacionamentoEntradas;
 
 public class EstacionamentoController {
 

@@ -1,9 +1,11 @@
 package org.example.controllers;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.example.dal.VeiculoDAO;
 import org.example.factory.VeiculoFactory;
 import org.example.model.Veiculo;
 
@@ -54,6 +56,10 @@ public class VeiculoController {
             veiculo.setCor(cor);
         }
         return veiculo;
+    }
+
+    public void salvar() throws IOException, ClassNotFoundException {
+        VeiculoDAO.salvar(veiculos);
     }
 
 }
