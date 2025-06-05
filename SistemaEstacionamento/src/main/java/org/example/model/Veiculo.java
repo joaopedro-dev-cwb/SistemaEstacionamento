@@ -1,9 +1,10 @@
 package org.example.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Serializable {
 
     private String placa;
     private String modelo;

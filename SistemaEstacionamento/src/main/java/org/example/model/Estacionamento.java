@@ -1,10 +1,11 @@
 package org.example.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.example.controllers.VagaController;
 
-public class Estacionamento {
+public class Estacionamento implements Serializable {
 
     private String nome;
     private int numeroDeVagas;

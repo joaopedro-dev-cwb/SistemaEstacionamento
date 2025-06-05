@@ -1,8 +1,9 @@
 package org.example.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Pagamento {
+public class Pagamento implements Serializable {
+
     private int id;
     private Ticket ticket;
     private double valorPago;

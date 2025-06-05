@@ -1,9 +1,11 @@
 package org.example.model;
 
+import java.io.Serializable;
+
 import org.example.Enum.StatusVaga;
 import org.example.interfaces.Disponibilidade;
 
-public class Vaga implements Disponibilidade {
+public class Vaga implements Disponibilidade, Serializable {
 
     private int numero;
     private StatusVaga status;
