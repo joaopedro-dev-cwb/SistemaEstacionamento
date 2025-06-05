@@ -1,12 +1,14 @@
 package org.example.view;
 
-import org.example.controllers.VeiculoController;
-import org.example.model.Veiculo;
-import org.example.model.Carro;
-import org.example.model.Moto;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.time.LocalDateTime;
+
+import org.example.controllers.VeiculoController;
+import org.example.dal.VeiculoDAO;
+import org.example.model.Carro;
+import org.example.model.Veiculo;
 
 public class VeiculoView {
     private final VeiculoController veiculoController;
@@ -19,6 +21,13 @@ public class VeiculoView {
 
     public void menuVeiculo() {
         int opcao;
+        List<Veiculo> lista = new ArrayList<>();
+        try {
+            lista = VeiculoDAO.carregar();
+        } catch (Exception e){
+            System.err.println("Erro ao carregar a lista " + e.getMessage());
+        }
+
         do {
             exibirMenuVeiculo();
             opcao = lerOpcao();
@@ -57,7 +66,10 @@ public class VeiculoView {
             case 4 -> buscarVeiculoPorPlaca();
             case 5 -> atualizarVeiculo();
             case 6 -> removerVeiculo();
-            case 0 -> System.out.println("Voltando ao menu principal...");
+            case 0 -> {
+                veiculoController.salvar(); 
+                System.out.println("Voltando ao menu principal...");
+            }
             default -> System.out.println("Opção inválida!");
         }
     }

@@ -1,6 +1,5 @@
 package org.example.controllers;
 
-import org.example.Enum.StatusVaga;
 import org.example.factory.EstacionamentoFactory;
 import org.example.model.Carro;
 import org.example.model.Estacionamento;
@@ -15,18 +14,6 @@ public class EstacionamentoController {
         estacionamento = EstacionamentoFactory.criarEstacionamento(nome, numeroDeVagas, endereco, telefone, email);
     }
 
-    public void registrarEntradaVeiculo(String placa) {
-        if (placa == null || placa.trim().isEmpty()) {
-            System.err.println("Placa inválida. O veículo não pode ser registrado.");
-
-            return;
-        }
-
-        // Chama o método para registrar a entrada do veículo
-        EstacionamentoEntradas.registrarEntrada(placa);
-    }
-
-
     public String alocarCarro(Carro carro) throws Exception {
         Vaga vaga = estacionamento.getVagas().stream()
                 .filter(Vaga::estaDisponivel).findFirst().orElse(null);
@@ -34,9 +21,6 @@ public class EstacionamentoController {
         if (vaga != null) {
             vaga.alterarDisponibilidade(false);
             carro.setIdVaga(vaga.getNumero());
-            EstacionamentoController estacionamento = new EstacionamentoController();
-            estacionamento.registrarEntradaVeiculo("ABC-1234");
-
             return "Carro alocado com sucesso!";
 
         } else {

@@ -83,7 +83,6 @@ public class EstacionamentoView {
             }
             
             String resultado = estacionamentoController.alocarCarro((Carro) veiculo);
-            estacionamentoController.registrarEntradaVeiculo(placa);
 
             System.out.println(resultado);
         } catch (Exception e) {
