@@ -67,8 +67,13 @@ public class VeiculoView {
             case 5 -> atualizarVeiculo();
             case 6 -> removerVeiculo();
             case 0 -> {
-                veiculoController.salvar(); 
-                System.out.println("Voltando ao menu principal...");
+                try {
+                    veiculoController.salvar(); 
+                } catch (Exception e) {
+                    System.err.println("Erro ao salvar lista. " + e.getMessage());
+                } finally {
+                    System.out.println("Voltando ao menu principal...");
+                }
             }
             default -> System.out.println("Opção inválida!");
         }

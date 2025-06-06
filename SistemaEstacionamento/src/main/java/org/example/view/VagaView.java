@@ -1,10 +1,13 @@
 package org.example.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import org.example.controllers.VagaController;
+import org.example.dal.VagaDAO;
 import org.example.model.Vaga;
+
 
 public class VagaView {
     private VagaController vagaController;
@@ -17,6 +20,13 @@ public class VagaView {
 
     public void menuVaga() {
         int opcao;
+        List<Vaga> lista = new ArrayList<>();
+        try {
+            lista = VagaDAO.carregar();
+        } catch (Exception e){
+            System.err.println("Erro ao carregar a lista " + e.getMessage());
+        }
+
         do {
             System.out.println("\n--- Menu de Vagas ---");
             System.out.println("1. Criar Vagas");
@@ -33,7 +43,16 @@ public class VagaView {
                 case 2 -> listarVagas();
                 case 3 -> buscarVagaPorNumero();
                 case 4 -> removerVaga();
-                case 0 -> System.out.println("Voltando...");
+                case 0 -> {
+                    try {
+                        vagaController.salvar(); 
+                    } catch (Exception e) {
+                        System.err.println("Erro ao salvar lista. " + e.getMessage());
+                    } finally {
+                        System.out.println("Voltando ao menu principal...");
+                    }
+                }
+    
                 default -> System.out.println("Opção inválida!");
             }
         } while (opcao != 0);
@@ -47,6 +66,7 @@ public class VagaView {
         List<Vaga> vagas = vagaController.criarVagas(numeroDeVagas);
         System.out.println("Vagas criadas com sucesso!");
         System.out.println("Total de vagas: " + vagas.size());
+        
     }
 
     private void listarVagas() {
