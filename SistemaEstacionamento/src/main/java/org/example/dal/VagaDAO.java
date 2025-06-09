@@ -13,7 +13,7 @@ import org.example.model.Vaga;
 
 public class VagaDAO {
 
-    private static final String CAMINHO = "src/main/dados";
+    private static final String CAMINHO = "src/dados";
 
     public static void salvar(List<Vaga> vagas) throws IOException {
         File diretorio = new File(CAMINHO);

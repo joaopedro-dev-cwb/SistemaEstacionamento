@@ -9,31 +9,31 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.model.Veiculo;
+import org.example.model.Estacionamento;
 
 public class EstacionamentoDAO {
 
-    private static final String CAMINHO = "src/main/dados";
+   private static final String CAMINHO = "src/dados";
 
-    public static void salvar(List<Veiculo> veiculos) throws IOException {
+    public static void salvar(List<Estacionamento> tickets) throws IOException {
         File diretorio = new File(CAMINHO);
         diretorio.mkdirs();
 
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CAMINHO + "/veiculos.ser"))) {
-            oos.writeObject(veiculos);
-        }catch (IOException e) {
-            throw new IOException("Erro ao salvar os veículos: " + e.getMessage(), e);
-        } 
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CAMINHO + "/estacionamentos.ser"))) {
+            oos.writeObject(tickets);
+        }
     }
 
     @SuppressWarnings("unchecked")
-    public static List<Veiculo> carregar () throws IOException, ClassNotFoundException {
+    public static List<Estacionamento> carregar() throws IOException, ClassNotFoundException {
 
-        File arquivo = new File(CAMINHO + "/veiculos.ser");
-        if(!arquivo.exists()) return new ArrayList<>();
+        File arquivo = new File(CAMINHO + "/estacionamentos.ser");
+        if (!arquivo.exists()) {
+            return new ArrayList<>();
+        }
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo))){
-            return (List<Veiculo>) ois.readObject();
-        } 
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo))) {
+            return (List<Estacionamento>) ois.readObject();
+        }
     }
 }

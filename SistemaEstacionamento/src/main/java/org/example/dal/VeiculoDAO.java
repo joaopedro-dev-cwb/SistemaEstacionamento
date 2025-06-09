@@ -13,7 +13,7 @@ import org.example.model.Veiculo;
 
 public class VeiculoDAO {
 
-    private static final String CAMINHO = "src/main/dados";
+    private static final String CAMINHO = "src/dados";
 
     public static void salvar(List<Veiculo> veiculos) throws IOException {
         File diretorio = new File(CAMINHO);

@@ -7,7 +7,6 @@ import java.util.Scanner;
 import org.example.controllers.EstacionamentoController;
 import org.example.controllers.VeiculoController;
 import org.example.dal.EstacionamentoDAO;
-import org.example.dal.VeiculoDAO;
 import org.example.model.Carro;
 import org.example.model.Estacionamento;
 import org.example.model.Moto;
@@ -46,28 +45,11 @@ public class EstacionamentoView {
             opcao = scanner.nextInt();
             scanner.nextLine();
             switch (opcao) {
-<<<<<<< HEAD
-                case 1 ->
-                    cadastrarEstacionamento();
-                case 2 ->
-                    alocarCarro();
-                case 3 ->
-                    alocarMoto();
-                case 0 ->
-                    System.out.println("Voltando...");
-                default ->
-                    System.out.println("Opção inválida!");
-=======
                 case 1 -> cadastrarEstacionamento();
                 case 2 -> alocarCarro();
                 case 3 -> alocarMoto();
-                case 0 -> {
-                estacionamentoController.salvar(); 
-                System.out.println("Voltando ao menu principal...");
-                }
-
+                case 0 -> System.out.println("Voltando ao menu principal...");
                 default -> System.out.println("Opção inválida!");
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             }
         } while (opcao != 0);
     }

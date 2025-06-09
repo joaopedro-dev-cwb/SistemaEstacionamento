@@ -1,20 +1,15 @@
 package org.example.view;
 
-import java.util.Scanner;
-
-import org.example.controllers.PagamentoController;
-import org.example.controllers.TicketController;
-// import org.example.dal.PagamentoDAO; irá ser criado
-import org.example.model.Pagamento;
-import org.example.model.Ticket;
-<<<<<<< HEAD
-=======
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
+
+import org.example.controllers.PagamentoController;
+import org.example.controllers.TicketController;
+import org.example.dal.PagamentoDAO;
+import org.example.model.Pagamento;
+import org.example.model.Ticket;
 
 public class PagamentoView {
 
@@ -39,31 +34,6 @@ public class PagamentoView {
         }
 
         do {
-<<<<<<< HEAD
-            System.out.println("\n--- Menu de Pagamentos ---");
-            System.out.println("1. Realizar Pagamento");
-            System.out.println("2. Listar Pagamentos");
-            System.out.println("3. Editar Pagamento");
-            System.out.println("4. Remover Pagamento");
-            System.out.println("0. Voltar");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
-
-            switch (opcao) {
-                case 1 ->
-                    realizarPagamento();
-                case 2 ->
-                    listarPagamentos();
-                case 3 ->
-                    editarPagamento();
-                case 4 ->
-                    removerPagamento();
-                case 0 ->
-                    System.out.println("Voltando...");
-                default ->
-                    System.out.println("Opção inválida!");
-=======
             exibirMenuPagamento();
             opcao = lerOpcao();
             
@@ -71,13 +41,10 @@ public class PagamentoView {
                 executarOpcao(opcao);
             } catch (Exception e) {
                 System.out.println("Erro: " + e.getMessage());
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             }
         } while (opcao != 0);
     }
 
-<<<<<<< HEAD
-=======
     // Novo método para exibir o menu (similar ao VeiculoView)
     private void exibirMenuPagamento() {
         System.out.println("\n--- Menu de Pagamentos ---");
@@ -126,16 +93,12 @@ public class PagamentoView {
         }
     }
 
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
     private void realizarPagamento() {
         System.out.println("\n--- Realizar Pagamento ---");
         try {
             System.out.print("ID do Ticket: ");
             int ticketId = scanner.nextInt();
-<<<<<<< HEAD
-=======
             
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             scanner.nextLine(); // Limpar buffer
 
             Ticket ticket = ticketController.getTicketById(ticketId);
@@ -144,18 +107,11 @@ public class PagamentoView {
                 System.err.println("[PagamentoView] Tentativa de pagamento com ticket inexistente: ID " + ticketId);
                 return;
             }
-<<<<<<< HEAD
-
-            System.out.println("Ticket encontrado: " + ticket);
-            System.out.print("Valor a pagar: ");
-            double valor = scanner.nextDouble();
-=======
             
             System.out.println("Ticket encontrado: " + ticket.toString());
             System.out.print("Valor a pagar: ");
             double valor = scanner.nextDouble();
             
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             scanner.nextLine(); // Limpar buffer
 
             System.out.print("Forma de pagamento (DINHEIRO, CARTAO_CREDITO, CARTAO_DEBITO, PIX): ");
@@ -186,7 +142,7 @@ public class PagamentoView {
             System.out.println("[PagamentoView] Listagem de pagamentos concluída.");
         } catch (Exception e) {
             System.err.println("[PagamentoView] Erro interno ao listar pagamentos: " + e.getMessage());
-            e.printStackTrace(); // Envia para o log
+            e.printStackTrace(); 
         }
     }
 
@@ -195,10 +151,7 @@ public class PagamentoView {
         try {
             System.out.print("ID do pagamento para editar: ");
             int id = scanner.nextInt();
-<<<<<<< HEAD
-=======
             
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             scanner.nextLine(); // Limpar buffer
 
             String resultado = pagamentoController.editarPagamentoPorID(id);
@@ -220,10 +173,7 @@ public class PagamentoView {
         try {
             System.out.print("ID do pagamento para remover: ");
             int id = scanner.nextInt();
-<<<<<<< HEAD
-=======
             
->>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             scanner.nextLine(); // Limpar buffer
 
             String resultado = pagamentoController.removerPagamentoPorId(id);
