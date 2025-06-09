@@ -25,3 +25,10 @@ java.util.NoSuchElementException
 	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
 	at org.example.view.VagaView.menuVaga(VagaView.java:28)
 	at org.example.Main.main(Main.java:70)
+[2025-06-09 17:54:12] Um erro inesperado ocorreu no sistema principal: Cannot invoke "java.util.List.stream()" because "this.vagas" is null
+[2025-06-09 17:54:12] Por favor, verifique o log de erros para mais detalhes.
+java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because "this.vagas" is null
+	at org.example.controllers.VagaController.listarVagas(VagaController.java:24)
+	at org.example.view.VagaView.listarVagas(VagaView.java:74)
+	at org.example.view.VagaView.menuVaga(VagaView.java:43)
+	at org.example.Main.main(Main.java:77)

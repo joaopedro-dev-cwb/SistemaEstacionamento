@@ -10,8 +10,18 @@ public class EstacionamentoController {
 
     public Estacionamento estacionamento;
 
-    public void cadastrarEstacionamento(String nome, int numeroDeVagas, String endereco, String telefone, String email) {
-        estacionamento = EstacionamentoFactory.criarEstacionamento(nome, numeroDeVagas, endereco, telefone, email);
+    public void cadastrarEstacionamento(String nome, int numeroDeVagas, String endereco, String telefone, String email) throws Exception, IllegalStateException {
+        if (estacionamento != null) {
+            throw new IllegalStateException("Estacionamento já cadastrado.");
+        }
+        
+        try {
+            estacionamento = EstacionamentoFactory.criarEstacionamento(nome, numeroDeVagas, endereco, telefone, email);
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro inesperado ao cadastrar estacionamento: " + e.getMessage());
+            throw new Exception("Erro ao cadastrar estacionamento: " + e.getMessage(), e);
+        }
+        
     }
 
     public String alocarCarro(Carro carro) throws Exception {
@@ -24,6 +34,7 @@ public class EstacionamentoController {
             return "Carro alocado com sucesso!";
 
         } else {
+            System.err.println("[Controller] Erro inesperado sem vagas: ");
             throw new Exception("Sem vagas disponiveis");
         }
     }
@@ -45,6 +56,7 @@ public class EstacionamentoController {
         if (vaga != null) {
             return "Moto alocada com sucesso!";
         } else {
+            System.err.println("[Controller] Erro inesperado sem vagas disponiveis: ");
             throw new Exception("Sem vagas disponíveis.");
         }
     }
