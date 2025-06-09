@@ -1,10 +1,15 @@
 package org.example.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.example.controllers.EstacionamentoController;
 import org.example.controllers.VeiculoController;
+import org.example.dal.EstacionamentoDAO;
+import org.example.dal.VeiculoDAO;
 import org.example.model.Carro;
+import org.example.model.Estacionamento;
 import org.example.model.Moto;
 import org.example.model.Veiculo;
 
@@ -22,16 +27,26 @@ public class EstacionamentoView {
 
     public void menuEstacionamento() {
         int opcao;
+        List<Estacionamento> lista = new ArrayList<>();
+        
+        try {
+            lista = EstacionamentoDAO.carregar();
+        } catch (Exception e){
+            System.err.println("Erro ao carregar a lista " + e.getMessage());
+        }
+        
         do {
             System.out.println("\n--- Menu do Estacionamento ---");
             System.out.println("1. Cadastrar Estacionamento");
             System.out.println("2. Alocar Carro");
             System.out.println("3. Alocar Moto");
             System.out.println("0. Voltar");
+            
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
             switch (opcao) {
+<<<<<<< HEAD
                 case 1 ->
                     cadastrarEstacionamento();
                 case 2 ->
@@ -42,6 +57,17 @@ public class EstacionamentoView {
                     System.out.println("Voltando...");
                 default ->
                     System.out.println("Opção inválida!");
+=======
+                case 1 -> cadastrarEstacionamento();
+                case 2 -> alocarCarro();
+                case 3 -> alocarMoto();
+                case 0 -> {
+                estacionamentoController.salvar(); 
+                System.out.println("Voltando ao menu principal...");
+                }
+
+                default -> System.out.println("Opção inválida!");
+>>>>>>> db5ba7f0ffb068f6244efaef1ad5da4edcc105ab
             }
         } while (opcao != 0);
     }

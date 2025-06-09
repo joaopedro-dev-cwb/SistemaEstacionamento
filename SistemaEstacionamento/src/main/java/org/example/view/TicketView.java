@@ -1,12 +1,17 @@
 package org.example.view;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import org.example.controllers.TicketController;
 import org.example.controllers.VagaController;
 import org.example.controllers.VeiculoController;
+import org.example.dal.TicketDAO;
+import org.example.model.Ticket;
 import org.example.model.Vaga;
 import org.example.model.Veiculo;
-import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class TicketView {
     private TicketController ticketController;
@@ -23,6 +28,13 @@ public class TicketView {
 
     public void menuTicket() {
         int opcao;
+        List<Ticket> lista = new ArrayList<>();
+        try {
+            lista = TicketDAO.carregar();
+        } catch (Exception e){
+            System.err.println("Erro ao carregar a lista " + e.getMessage());
+        }
+
         do {
             System.out.println("\n--- Menu de Tickets ---");
             System.out.println("1. Gerar Ticket");
@@ -38,7 +50,15 @@ public class TicketView {
                 case 2 -> listarTickets();
                 case 3 -> atualizarTicket();
                 case 4 -> removerTicket();
-                case 0 -> System.out.println("Voltando...");
+                case 0 -> {
+                    try {
+                        ticketController.salvar(); 
+                    } catch (Exception e) {
+                        System.err.println("Erro ao salvar lista. " + e.getMessage());
+                    } finally {
+                        System.out.println("Voltando ao menu principal...");
+                    }
+                }
                 default -> System.out.println("Opção inválida!");
             }
         } while (opcao != 0);

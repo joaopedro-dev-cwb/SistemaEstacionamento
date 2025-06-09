@@ -14,51 +14,105 @@ public class VeiculoController {
     static List<Veiculo> veiculos;
 
     public VeiculoController() {
-        veiculos = new ArrayList<>();
+
+        try { 
+                veiculos = new ArrayList<>();  
+        } catch (Exception e) { 
+                System.err.println("[Controller] Erro inesperado ao carregar veículos na inicialização: " + e.getMessage());
+                e.printStackTrace();
+            }
     }
 
     public void criarCarro(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
-        veiculos.add(VeiculoFactory.criarCarro(placa, modelo, cor, dataHoraEntrada));
+        try {
+            veiculos.add(VeiculoFactory.criarCarro(placa, modelo, cor, dataHoraEntrada));
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao criar carro com placa " + placa + ": " + e.getMessage());
+            e.printStackTrace();
+            throw new Exception("Falha ao criar carro.", e);
+        }
     }
 
+
     public void criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) {
-        veiculos.add(VeiculoFactory.criarMoto(placa, modelo, cor, dataHoraEntrada));
+        try {
+            veiculos.add(VeiculoFactory.criarMoto(placa, modelo, cor, dataHoraEntrada));
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao criar moto com placa " + placa + ": " + e.getMessage());
+            e.printStackTrace();         
+        }
     }
 
     public List<String> listarVeiculos() {
-        return veiculos.stream().map(Veiculo::toString).toList();
+        try {
+
+            return veiculos.stream().map(Veiculo::toString).toList();
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao listar veículos: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>(); // Retorna lista vazia em caso de erro
+        }
     }
 
     public List<Veiculo> getVeiculos() {
         return veiculos;
     }
 
+
     public static Veiculo buscarVeiculoPorPlaca(String placa) {
-        for (Veiculo veiculo : veiculos) {
-            if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
-                return veiculo;
+        try {
+            for (Veiculo veiculo : veiculos) {
+                if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
+                    return veiculo;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao buscar veículo por placa " + placa + ": " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public void removerVeiculo(String placa) {
-        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
-        if (veiculo != null) {
-            veiculos.remove(veiculo);
+        try {
+            Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+            if (veiculo != null) {
+                veiculos.remove(veiculo);
+            }
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao remover veículo com placa " + placa + ": " + e.getMessage());
+            e.printStackTrace();
+            // Não relança pois o método original não declarava 'throws Exception'
         }
     }
 
     public Veiculo atualizarVeiculo(String placa, String modelo, String cor) {
-        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
-        if (veiculo != null) {
-            veiculo.setModelo(modelo);
-            veiculo.setCor(cor);
+        try {
+            Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+            if (veiculo != null) {
+                veiculo.setModelo(modelo);
+                veiculo.setCor(cor);
+            }
+            return veiculo;
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao atualizar veículo com placa " + placa + ": " + e.getMessage());
+            e.printStackTrace();
+            return null; // Retorna null em caso de erro
         }
-        return veiculo;
     }
 
     public void salvar() throws IOException, ClassNotFoundException {
-        VeiculoDAO.salvar(veiculos);
+        try {
+            VeiculoDAO.salvar(veiculos);
+        } catch (IOException e) {
+            System.err.println("[Controller] Erro de I/O ao salvar veículos: " + e.getMessage());
+            e.printStackTrace();
+            throw e; // Relança a IOException para a camada que chamou (View ou Main)
+        } catch (Exception e) { // Para qualquer outra exceção inesperada
+            System.err.println("[Controller] Erro inesperado ao salvar veículos: " + e.getMessage());
+            e.printStackTrace();
+            throw new IOException("Erro inesperado ao salvar dados.", e); // Envolve em IOException para consistência
+        }
     }
 }

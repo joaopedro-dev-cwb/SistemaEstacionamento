@@ -21,7 +21,9 @@ public class EstacionamentoDAO {
 
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CAMINHO + "/veiculos.ser"))) {
             oos.writeObject(veiculos);
-        }
+        }catch (IOException e) {
+            throw new IOException("Erro ao salvar os veículos: " + e.getMessage(), e);
+        } 
     }
 
     @SuppressWarnings("unchecked")
