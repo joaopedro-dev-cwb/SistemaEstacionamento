@@ -9,6 +9,7 @@ import org.example.model.Moto;
 import org.example.model.Veiculo;
 
 public class EstacionamentoView {
+
     private EstacionamentoController estacionamentoController;
     private VeiculoController veiculoController;
     private Scanner scanner;
@@ -29,13 +30,18 @@ public class EstacionamentoView {
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
             switch (opcao) {
-                case 1 -> cadastrarEstacionamento();
-                case 2 -> alocarCarro();
-                case 3 -> alocarMoto();
-                case 0 -> System.out.println("Voltando...");
-                default -> System.out.println("Opção inválida!");
+                case 1 ->
+                    cadastrarEstacionamento();
+                case 2 ->
+                    alocarCarro();
+                case 3 ->
+                    alocarMoto();
+                case 0 ->
+                    System.out.println("Voltando...");
+                default ->
+                    System.out.println("Opção inválida!");
             }
         } while (opcao != 0);
     }
@@ -55,17 +61,17 @@ public class EstacionamentoView {
         estacionamentoController.cadastrarEstacionamento(nome, vagas, endereco, telefone, email);
         System.out.println("Estacionamento cadastrado com sucesso!");
     }
-    
+
     private void alocarCarro() {
         try {
             if (estacionamentoController.estacionamento == null) {
                 System.out.println("Estacionamento não cadastrado! Cadastre um estacionamento primeiro.");
                 return;
             }
-            
+
             System.out.print("Placa do carro: ");
             String placa = scanner.nextLine();
-            
+
             Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
             if (veiculo == null || !(veiculo instanceof Carro)) {
                 System.out.println("Carro não encontrado. Deseja cadastrar um novo? (S/N)");
@@ -81,7 +87,7 @@ public class EstacionamentoView {
                     return;
                 }
             }
-            
+
             String resultado = estacionamentoController.alocarCarro((Carro) veiculo);
 
             System.out.println(resultado);
@@ -89,17 +95,17 @@ public class EstacionamentoView {
             System.out.println("Erro ao alocar carro: " + e.getMessage());
         }
     }
-    
+
     private void alocarMoto() {
         try {
             if (estacionamentoController.estacionamento == null) {
                 System.out.println("Estacionamento não cadastrado! Cadastre um estacionamento primeiro.");
                 return;
             }
-            
+
             System.out.print("Placa da moto: ");
             String placa = scanner.nextLine();
-            
+
             Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
             if (veiculo == null || !(veiculo instanceof Moto)) {
                 System.out.println("Moto não encontrada. Deseja cadastrar uma nova? (S/N)");
@@ -115,9 +121,10 @@ public class EstacionamentoView {
                     return;
                 }
             }
-            
+
             String resultado = estacionamentoController.alocarMoto((Moto) veiculo);
-            System.out.println(resultado);        } catch (Exception e) {
+            System.out.println(resultado);
+        } catch (Exception e) {
             System.out.println("Erro ao alocar moto: " + e.getMessage());
         }
     }
