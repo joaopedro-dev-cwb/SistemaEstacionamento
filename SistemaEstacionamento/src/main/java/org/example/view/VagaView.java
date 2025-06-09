@@ -18,7 +18,7 @@ public class VagaView {
         this.scanner = new Scanner(System.in);
     }
 
-    public void menuVaga() {
+    public void menuVaga()throws Exception {
         int opcao;
         List<Vaga> lista = new ArrayList<>();
         try {
@@ -58,7 +58,7 @@ public class VagaView {
         } while (opcao != 0);
     }
     
-    private void criarVagas() {
+    private void criarVagas() throws Exception {
         System.out.print("Quantas vagas deseja criar? ");
         int numeroDeVagas = scanner.nextInt();
         scanner.nextLine(); // Limpar buffer
@@ -69,7 +69,7 @@ public class VagaView {
         
     }
 
-    private void listarVagas() {
+    private void listarVagas()throws Exception {
         System.out.println("\nLista de Vagas:");
         List<String> vagas = vagaController.listarVagas();
         
@@ -80,7 +80,7 @@ public class VagaView {
         }
     }
     
-    private void buscarVagaPorNumero() {
+    private void buscarVagaPorNumero()throws Exception {
         System.out.print("Digite o número da vaga: ");
         int numero = scanner.nextInt();
         scanner.nextLine(); // Limpar buffer
@@ -93,7 +93,7 @@ public class VagaView {
         }
     }
 
-    private void removerVaga() {
+    private void removerVaga()throws Exception {
         System.out.print("Digite o número da vaga para remover: ");
         int numero = scanner.nextInt();
         scanner.nextLine(); // Limpar buffer

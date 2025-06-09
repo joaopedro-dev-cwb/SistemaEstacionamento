@@ -79,7 +79,7 @@ public class VeiculoView {
         }
     }
 
-    private void listarVeiculos() {
+    private void listarVeiculos()throws Exception {
         System.out.println("\n=== Lista de Veículos ===");
         List<String> veiculos = veiculoController.listarVeiculos();
         
@@ -136,7 +136,7 @@ public class VeiculoView {
         }
     }
     
-    private void buscarVeiculoPorPlaca() {
+    private void buscarVeiculoPorPlaca()throws Exception {
         System.out.println("\n=== Busca de Veículo ===");
         System.out.print("Digite a placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
@@ -157,7 +157,7 @@ public class VeiculoView {
         }
     }
     
-    private void atualizarVeiculo() {
+    private void atualizarVeiculo()throws Exception {
         System.out.println("\n=== Atualização de Veículo ===");
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
@@ -189,7 +189,7 @@ public class VeiculoView {
         System.out.println(veiculoAtualizado);
     }
 
-    private void removerVeiculo() {
+    private void removerVeiculo()throws Exception {
         System.out.println("\n=== Remoção de Veículo ===");
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();

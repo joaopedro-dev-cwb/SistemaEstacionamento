@@ -26,7 +26,7 @@ public class TicketView {
         this.scanner = new Scanner(System.in);
     }
 
-    public void menuTicket() {
+    public void menuTicket()throws Exception {
         int opcao;
         List<Ticket> lista = new ArrayList<>();
         try {
@@ -96,7 +96,7 @@ public class TicketView {
         }
     }
 
-    private void listarTickets() {
+    private void listarTickets() throws Exception {
         System.out.println("\nLista de Tickets:");
         ticketController.getTickets().forEach(System.out::println);
     }

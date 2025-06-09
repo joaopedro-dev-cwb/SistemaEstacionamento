@@ -24,7 +24,7 @@ public class EstacionamentoView {
         this.scanner = new Scanner(System.in);
     }
 
-    public void menuEstacionamento() {
+    public void menuEstacionamento()throws Exception {
         int opcao;
         List<Estacionamento> lista = new ArrayList<>();
         
@@ -54,7 +54,7 @@ public class EstacionamentoView {
         } while (opcao != 0);
     }
 
-    private void cadastrarEstacionamento() {
+    private void cadastrarEstacionamento()throws Exception {
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
         System.out.print("Número de vagas: ");
