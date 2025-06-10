@@ -32,7 +32,7 @@ public abstract class EstacionamentoFactory {
         if (!email.contains("@")) {
             throw new IllegalArgumentException("Email inválido.");
         }
-        
+
         try{
             List<Vaga> vagas = fazerVagas(numeroDeVagas);
             Estacionamento estacionamento = new Estacionamento(nome, endereco, numeroDeVagas, telefone, email, vagas);
@@ -44,6 +44,9 @@ public abstract class EstacionamentoFactory {
     }
 
     public static List<Vaga> fazerVagas(int numeroDeVagas) throws Exception {
+        if (numeroDeVagas <= 0) {
+            throw new IllegalArgumentException("Número de vagas deve ser maior que zero.");
+        }
         try{
             VagaController  vagaController = new VagaController();
             List<Vaga> vagasProntas = vagaController.criarVagas(numeroDeVagas);
