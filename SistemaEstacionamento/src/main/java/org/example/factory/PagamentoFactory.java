@@ -9,6 +9,7 @@ public class PagamentoFactory {
             Pagamento pagamento = new Pagamento(id, ticket, valor, formaPagamento);
             return pagamento;
         }catch(Exception e){
+            System.err.println("[Factory] Erro ao criar pagamento: " + e.getMessage());
             throw new Exception("Erro ao criar pagamento " + e.getMessage());
         }
     }

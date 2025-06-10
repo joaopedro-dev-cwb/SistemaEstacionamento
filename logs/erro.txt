@@ -32,3 +32,10 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because 
 	at org.example.view.VagaView.listarVagas(VagaView.java:74)
 	at org.example.view.VagaView.menuVaga(VagaView.java:43)
 	at org.example.Main.main(Main.java:77)
+[2025-06-09 22:52:47] Um erro inesperado ocorreu no sistema principal: Estacionamento já cadastrado.
+[2025-06-09 22:52:47] Por favor, verifique o log de erros para mais detalhes.
+java.lang.IllegalStateException: Estacionamento já cadastrado.
+	at org.example.controllers.EstacionamentoController.cadastrarEstacionamento(EstacionamentoController.java:15)
+	at org.example.view.EstacionamentoView.cadastrarEstacionamento(EstacionamentoView.java:69)
+	at org.example.view.EstacionamentoView.menuEstacionamento(EstacionamentoView.java:48)
+	at org.example.Main.main(Main.java:68)
