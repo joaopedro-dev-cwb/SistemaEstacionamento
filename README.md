@@ -223,9 +223,12 @@ O sistema mantém logs detalhados em `logs/erro.txt` para:
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
-**João Pedro** - [@joaopedro-dev-cwb](https://github.com/joaopedro-dev-cwb)
+- **Marcos Maues** - [@Mauesmaues](https://github.com/Mauesmaues)
+- **Gabriel Laureano Soares da Silva** - [@GabrieLaureanoUP](https://github.com/GabrieLaureanoUP)
+- **João Pedro** - [@joaopedro-dev-cwb](https://github.com/joaopedro-dev-cwb)
+- **Rafael Sancor** - [@rafasancor](https://github.com/rafasancor)
 
 ---
 
